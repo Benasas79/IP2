@@ -1,0 +1,80 @@
+Test 1
+Smallest element should appear first after sorted inserts.
+Expected: 2, actual: 2
+Result: PASS
+
+Test 2
+Largest element should appear last in ascending order.
+Expected: 10, actual: 10
+Result: PASS
+
+Test 3
+operator[] should return the first position of a duplicated value.
+Expected: 0, actual: 0
+Result: PASS
+
+Test 4
+count should report both copies of the duplicated value.
+Expected: 2, actual: 2
+Result: PASS
+
+Test 5
+contains should report true for an inserted value.
+Observed: true
+Result: PASS
+
+Test 6
+Editing index 1 to 8 should reinsert it into sorted position.
+Expected: 8, actual: 8
+Result: PASS
+
+Test 7
+After the earlier edit removed one duplicate, deleting 2 should remove the final remaining copy.
+Expected: 0, actual: 0
+Result: PASS
+
+Test 8
+Deep copy should prevent later edits from affecting the original.
+Expected: 0, actual: 0
+Result: PASS
+
+Test 9
+Comparison operators should align lexicographically.
+Observed: true
+Result: PASS
+
+Test 10
+Descending comparator should keep the biggest value first.
+Expected: 9, actual: 9
+Result: PASS
+
+Test 11
+Changing comparator should reorder the stored values.
+Expected: 1, actual: 1
+Result: PASS
+
+Test 12
+toString should describe the active comparator.
+Expected fragment: comparator=ascending
+Actual text: OrderedList{size=3, capacity=4, comparator=ascending, values=[1, 4, 9]}
+Result: PASS
+
+Test 13
+operator! should clear the entire list.
+Observed: true
+Result: PASS
+
+Test 14
+Reading from an empty list should raise the custom exception.
+Caught custom exception: Cannot read from an empty ordered list.
+Result: PASS
+
+Test 15
+Constructing with a null comparator should raise a standard exception.
+Caught standard exception: Comparator must not be null.
+Result: PASS
+
+Summary
+Passed tests: 15
+Total tests: 15
+Overall result: PASS
