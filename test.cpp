@@ -63,7 +63,7 @@ bool expectText(DualLogger& log, const std::string& actual, const std::string& e
 bool expectThrowsOrdered(DualLogger& log, const std::string& testName, const std::string& detail, void (*action)()) {
     try {
         action();
-    } catch (const ip2::OrderedListException& error) {
+    } catch (const IP2::OrderedListException& error) {
         log << testName << '\n';
         log << detail << '\n';
         log << "Caught custom exception: " << error.what() << '\n';
@@ -87,7 +87,7 @@ bool expectThrowsOrdered(DualLogger& log, const std::string& testName, const std
 bool expectThrowsStandard(DualLogger& log, const std::string& testName, const std::string& detail, void (*action)()) {
     try {
         action();
-    } catch (const ip2::OrderedListException& error) {
+    } catch (const IP2::OrderedListException& error) {
         log << testName << '\n';
         log << detail << '\n';
         log << "Caught custom exception instead: " << error.what() << '\n';
@@ -109,12 +109,12 @@ bool expectThrowsStandard(DualLogger& log, const std::string& testName, const st
 }
 
 void readFromEmpty() {
-    ip2::OrderedList list;
+    IP2::OrderedList list;
     list.at(0);
 }
 
 void constructWithNullComparator() {
-    ip2::OrderedList list(nullptr);
+    IP2::OrderedList list(nullptr);
 }
 
 }
@@ -124,7 +124,7 @@ int main() {
     int passed = 0;
     int total = 0;
 
-    ip2::OrderedList list;
+    IP2::OrderedList list;
     list += 10;
     list += 2;
     list += 6;
@@ -145,7 +145,7 @@ int main() {
     ++total;
     passed += expectTrue(log, list.contains(6), "Test 5", "contains should report true for an inserted value.");
 
-    list *= ip2::OrderedList::EditCommand{1, 8};
+    list *= IP2::OrderedList::EditCommand{1, 8};
     ++total;
     passed += expectEqual(log, list.at(2), 8, "Test 6", "Editing index 1 to 8 should reinsert it into sorted position.");
 
@@ -153,7 +153,7 @@ int main() {
     ++total;
     passed += expectEqual(log, list.count(2), 0, "Test 7", "After the earlier edit removed one duplicate, deleting 2 should remove the final remaining copy.");
 
-    ip2::OrderedList copy(list);
+    IP2::OrderedList copy(list);
     copy += 50;
     ++total;
     passed += expectEqual(log, list.count(50), 0, "Test 8", "Deep copy should prevent later edits from affecting the original.");
@@ -161,14 +161,14 @@ int main() {
     ++total;
     passed += expectTrue(log, list < copy, "Test 9", "Comparison operators should align lexicographically.");
 
-    ip2::OrderedList descending(ip2::OrderedList::descending);
+    IP2::OrderedList descending(IP2::OrderedList::descending);
     descending += 4;
     descending += 9;
     descending += 1;
     ++total;
     passed += expectEqual(log, descending.at(0), 9, "Test 10", "Descending comparator should keep the biggest value first.");
 
-    descending.setComparator(ip2::OrderedList::ascending);
+    descending.setComparator(IP2::OrderedList::ascending);
     ++total;
     passed += expectEqual(log, descending.at(0), 1, "Test 11", "Changing comparator should reorder the stored values.");
 

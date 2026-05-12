@@ -6,7 +6,7 @@
 #include <string>
 #include <utility>
 
-namespace ip2 {
+namespace IP2 {
 
 class OrderedListException : public std::logic_error {
 public:
@@ -14,6 +14,10 @@ public:
 };
 
 class OrderedList {
+private:
+    class Implementation;
+    Implementation* impl_;
+
 public:
     using Comparator = bool (*)(int left, int right);
     using EditCommand = std::pair<std::size_t, int>;
@@ -54,10 +58,6 @@ public:
 
     static bool ascending(int left, int right) noexcept;
     static bool descending(int left, int right) noexcept;
-
-private:
-    class Implementation;
-    Implementation* impl_;
 };
 
 }

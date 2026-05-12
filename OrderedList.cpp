@@ -4,7 +4,7 @@
 #include <sstream>
 #include <utility>
 
-namespace ip2 {
+namespace IP2 {
 
 OrderedListException::OrderedListException(const std::string& message)
     : std::logic_error(message) {
@@ -112,7 +112,7 @@ bool OrderedList::descending(int left, int right) noexcept {
 OrderedList::OrderedList(Comparator comparator)
     : impl_(nullptr) {
     if (comparator == nullptr) {
-        throw std::invalid_argument("Comparator must not be null.");
+        comparator = ascending;
     }
 
     impl_ = new Implementation(comparator);

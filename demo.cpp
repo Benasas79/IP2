@@ -4,7 +4,7 @@
 #include "OrderedList.h"
 
 int main() {
-    using ip2::OrderedList;
+    using IP2::OrderedList;
 
     OrderedList numbers;
     numbers += 7;
@@ -78,7 +78,7 @@ int main() {
 
     try {
         numbers.at(0);
-    } catch (const ip2::OrderedListException& error) {
+    } catch (const IP2::OrderedListException& error) {
         std::cout << "Custom exception caught: " << error.what() << '\n';
     }
 
